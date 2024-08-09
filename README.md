@@ -54,10 +54,10 @@ because the express don't know what type of data is coming in the body and how t
 so to handle this issue, we use a middleware. How??
 app.use(express.urlencoded({extended:false}))
 case1 : extended :false
-![when the extended:false](image.png)
+![extended:false](image-1.png)
 
 case2 : extended : true
-![when the extended:true](image-1.png)
+![extended:true](image.png)
 
 now we got the data in the console that was passed in the postman.
 now we need to send this data in the MOCK_DATA.json. HOW???
