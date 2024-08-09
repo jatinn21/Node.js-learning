@@ -83,7 +83,8 @@ app.get("/api/users/:id", (req, res) => {
 // Creating a new user using POST method
 // also getting the body details that were filed in postman and send from urlencoded.
 // first it was undefined , the body we recieved was undefined but we can handle it using middleware
-app.post("/api/users/:id", (req, res) => {
+
+app.post("/api/users/", (req, res) => {
   // TODO: Create a new user
   const body = req.body;
   console.log("MYBODY : ", body);
@@ -103,7 +104,16 @@ app.post("/api/users/:id", (req, res) => {
 // Updating a field in existing user using PATCH method
 app.patch("/api/users/:id", (req, res) => {
   // TODO: Updating a field with id ( variable )
-  return res.json({ status: "Updating a field, pending" });
+  const body = req.body;
+  const id = +req.params.id;
+  users.forEach((user, index) => {
+    user.id === id ? (users[index] = { ...user, ...body }) : null;
+  });
+  fs.writeFile("MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    return res.json({
+      status: "successfully updated Email",
+    });
+  });
 });
 
 // Updating the whole user using PUT method

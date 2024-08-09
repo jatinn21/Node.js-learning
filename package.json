@@ -1,0 +1,14 @@
+{
+  "name": "node.js-learning",
+  "version": "1.0.0",
+  "description": "REST API - JSON, Javascript Object (It can be another like text, image, HTML, etc )",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
