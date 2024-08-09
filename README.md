@@ -63,4 +63,58 @@ now we got the data in the console that was passed in the postman.
 now we need to send this data in the MOCK_DATA.json. HOW???
 using fs module
 
-<!-- hu aaeuuu kehuuuuu keva mangato hato ke -->
+## DONE WITH THE PATCH
+
+---
+
+### USING MIDDLEWARE
+
+they are the functions that have access to the request and the response and the next middleware function in the application request-response cycle ( if there is multiple middleware between client and server)
+
+they perform the following tasks :
+
+- Execute any code
+- Modify the request and response objects
+- Call the next middleware function in the stack
+- End the request-response cycle.
+
+Syntax:
+app.use((req,res,next)=>{
+// code to be executed
+})
+
+CASE 1 :
+if there is a middleware m1 and then it goes to method function.
+but that middleware neither send any resposnse nor it pass the request further which means its holding the request.
+(BAD PRACTICE)
+
+m1 : app.use(express.urlextended({extended : false}))
+m2 : app.use((req,res,next)=>{
+// code to be executed
+console.log("Hello from the MiddleWare 2");
+})
+
+<!-- final function to be run -->
+
+app.get('/api/users',(req.res)=>{
+return res.json(users)
+})
+
+OUTPUT : USER WON't get response and the postman will be on infinnite loading.
+
+CASE2 : Returning the response from middleware so that they won't go further to the function method or the routes.
+Reason behind : For authentication where we found something suspecious or wrong or feels like the request is made from a unauthorized user or a hacker.
+
+m1 : app.use(express.urlextended({extended : false}))
+m2 : app.use((req,res,next)=>{
+// code to be executed
+console.log("Hello from the MiddleWare 2");
+return res.json({STATUS : "NOT MOVING FURTHER - BY MIDDLEWARE"})
+})
+
+<!-- final function to be run -->
+<!--  This will not be called -->
+
+app.get('/api/users',(req.res)=>{
+return res.json(users)
+})
