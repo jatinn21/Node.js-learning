@@ -41,7 +41,7 @@ We can't use browser for this as it use get method.
 So we are going to use POSTMAN.
 
 So in POST we are going to create a new user.
-STEPS : ENTER THE DETAIL OF USERS LIKE ID, FIRSTNAME, LASTNAME, GENDER, JOB_TITLE... INSIDET THE x-www-form-urlenpre>d in the KEY-value pair
+STEPS : ENTER THE DETAIL OF USERS LIKE ID, FIRSTNAME, LASTNAME, GENDER, JOB_TITLE... INSIDET THE x-www-form-urlencoded in the KEY-value pair
 
 But the thing is after clicking the send button on the postman, i want the form data to be in the json file. or recieve in the broswer
 
@@ -55,7 +55,7 @@ console.log(body) <--- undefined, even after sending the data from postman
 because the express don't know what type of data is coming in the body and how to handle it.<br>
 so to handle this issue, we use a middleware. How?? <br>
 
-<pre>app.use(express.urlenpre>d({extended:false}))
+<pre>app.use(express.urlencoded({extended:false}))
 </pre>
 
 ### case1 : extended :false
@@ -101,7 +101,7 @@ they are the functions that have access to the request and the response and the 
 
 they perform the following tasks :
 
-- Execute any pre>
+- Execute any code
 - Modify the request and response objects
 - Call the next middleware function in the stack
 - End the request-response cycle.
@@ -109,7 +109,7 @@ they perform the following tasks :
 <pre>
 Syntax:
 app.use((req,res,next)=>{
-// pre> to be executed
+// code to be executed
 })
 </pre>
 
