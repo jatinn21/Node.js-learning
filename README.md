@@ -189,7 +189,7 @@ i. Content-Type
 - Tells the server what kind of data you're sending.
 - If you're sending JSON data, you use
 - <pre> Content-Type: application/json</pre>>
-- If you're sending form data, you'd use Content-Type: application/x-www-form-urlenpre>d.
+- If you're sending form data, you'd use Content-Type: application/x-www-form-urlencoded.
 - The server needs to know how to read and process the data you're sending.
 
 ii. Accept
