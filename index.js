@@ -10,15 +10,39 @@ const users = require("./MOCK_DATA.json");
 // now we need to buit an app instance using express
 const app = express();
 
-// using middleware for handling the req body.
+// using middleware for handling the req body.  For addung the body object elements coming from POSTMAN to our body
 app.use(express.urlencoded({ extended: false }));
 
 // need to make a port number on which we will be working on
 const PORT = 8000;
 
+// Making new middleware :1 For checking the login status
+app.use((req, res, next) => {
+  console.log("We are Working in middleware 1");
+  next();
+  // return res.send({ status: "Please Login first" });
+});
+
+// Making new middleware 2 for testing things
+app.use((req, res, next) => {
+  console.log("We are Working in middleware 2");
+  req.body["X-hero"] = true;
+  const reqBody = req.headers;
+  console.log(reqBody);
+  // if (!reqBody["x-checkingname"])
+  //   return res.status(501).send("PLEASE PASS THE ALL THE HEADERS");
+  // if (reqBody["x-checkingname"] === "Ram")
+  //   return res.send({ status: "WELCOME ADMIN" });
+  // return res.send({
+  //   status: `Welcome ${reqBody["x-checkingname"]} Aboard.`,
+  // });
+  next();
+});
+
 //  making a get request for getting all the list of users but sending the JSON FORMAT.
 app.get("/api/users", (req, res) => {
-  return res.json(users);
+  return res.send({ "HERO VALUE": req.body["X-hero"] });
+  // return res.json(users);
 });
 
 //  making a get request for getting all the list of users but sending the HTML FORMAT.
